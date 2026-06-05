@@ -10,6 +10,10 @@
           "value": "sayulita-restaurant.vercel.app"
         }
       ]
-    }
+    },
+    { "source": "/en/reservas", "destination": "/en/", "permanent": true },
+    { "source": "/bg/reservas", "destination": "/bg/", "permanent": true },
+    { "source": "/es/reservas", "destination": "/es/", "permanent": true },
+    { "source": "/reservas",    "destination": "/en/", "permanent": true }
   ]
 }
