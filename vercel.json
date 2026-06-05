@@ -1,0 +1,15 @@
+{
+  "redirects": [
+    {
+      "source": "/(.*)",
+      "destination": "https://www.sayulitamiamor.com/$1",
+      "permanent": true,
+      "has": [
+        {
+          "type": "host",
+          "value": "sayulita-restaurant.vercel.app"
+        }
+      ]
+    }
+  ]
+}

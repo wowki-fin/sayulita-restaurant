@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://sayulita-restaurant.vercel.app/sitemap.xml
+Sitemap: https://www.sayulitamiamor.com/sitemap.xml
