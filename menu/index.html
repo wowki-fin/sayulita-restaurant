@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <title>SAYULITA — Menú · Chernomorets</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Manrope:wght@400;600;700&family=Pacifico&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #0c0a1e;
+      background: radial-gradient(130% 70% at 50% 0%, #2a1a52 0%, #140e30 42%, #0c0a1e 100%) fixed;
+      color: #f3eef8;
+      font-family: 'Manrope', sans-serif;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    .wrap { max-width: 480px; margin: 0 auto; }
+
+    /* ── HERO ── */
+    .hero {
+      text-align: center;
+      padding: 52px 24px 40px;
+    }
+    .hero-kicker {
+      font-family: 'Manrope', sans-serif;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #a971ff;
+      margin-bottom: 12px;
+    }
+    .hero-title {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 58px;
+      letter-spacing: 2px;
+      color: #fff;
+      text-shadow: 0 0 18px rgba(169,113,255,.55), 0 0 40px rgba(169,113,255,.25);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+    .hero-location {
+      font-family: 'Manrope', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #8e87aa;
+    }
+
+    /* ── STICKY NAV ── */
+    .sticky-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(12,10,30,0.97);
+      border-bottom: 1px solid rgba(214,1,127,.25);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .nav-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 18px 7px;
+    }
+    .nav-brand {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 16px;
+      letter-spacing: 2.5px;
+      color: #fff;
+    }
+    .lang-toggle {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .lang-btn {
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      font-family: 'Manrope', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 1px;
+      color: #8e87aa;
+      cursor: pointer;
+      padding: 2px 5px 3px;
+      transition: color .2s, border-color .2s;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .lang-btn.active {
+      color: #fff;
+      border-bottom-color: #d6017f;
+    }
+    .lang-sep { color: #4a4265; font-size: 13px; padding: 0 1px; }
+
+    /* ── CHIPS ── */
+    .chips-wrap {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding: 0 18px 10px;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    .chips-wrap::-webkit-scrollbar { display: none; }
+    .chip {
+      flex-shrink: 0;
+      font-family: 'Manrope', sans-serif;
+      font-weight: 600;
+      font-size: 10.5px;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+      color: #8e87aa;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 999px;
+      padding: 5px 13px;
+      cursor: pointer;
+      transition: color .2s, border-color .2s, background .2s;
+      white-space: nowrap;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .chip.active {
+      color: #fff;
+      background: rgba(214,1,127,.12);
+      border-color: #d6017f;
+    }
+
+    /* ── COLLAPSIBLE ALLERGEN KEY ── */
+    .allergen-collapsible {
+      max-width: 480px;
+      margin: 16px auto 0;
+      padding: 0 16px;
+    }
+    .allergen-toggle-btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.09);
+      border-radius: 12px;
+      padding: 13px 16px;
+      cursor: pointer;
+      color: #c5bedd;
+      font-family: 'Manrope', sans-serif;
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: .5px;
+      -webkit-tap-highlight-color: transparent;
+      transition: background .2s;
+    }
+    .allergen-toggle-btn:active { background: rgba(255,255,255,.07); }
+    .allergen-toggle-icon {
+      font-size: 20px;
+      color: #a971ff;
+      font-weight: 400;
+      transition: transform .25s;
+      line-height: 1;
+    }
+    .allergen-toggle-btn.open .allergen-toggle-icon { transform: rotate(45deg); }
+    .allergen-key-inner {
+      display: none;
+      padding: 14px 2px 6px;
+    }
+    .allergen-key-inner.open { display: block; }
+
+    /* ── ALLERGEN GRID ── */
+    .allergen-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 7px;
+    }
+    .allergen-entry {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Manrope', sans-serif;
+      font-size: 12.5px;
+      color: #c5bedd;
+    }
+    .a-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 28px;
+      height: 20px;
+      padding: 0 5px;
+      border-radius: 4px;
+      font-family: 'Oswald', sans-serif;
+      font-weight: 600;
+      font-size: 11.5px;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    /* ── SECTIONS ── */
+    .menu-sections {
+      max-width: 480px;
+      margin: 20px auto 0;
+    }
+    .menu-section { margin-bottom: 2px; scroll-margin-top: 100px; }
+
+    .section-header {
+      background: linear-gradient(90deg, #d6017f, #a30f6e);
+      padding: 11px 18px;
+      box-shadow: 0 4px 18px rgba(214,1,127,.35);
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .section-name {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #fff;
+      white-space: nowrap;
+    }
+    .section-subtitle {
+      font-family: 'Manrope', sans-serif;
+      font-weight: 600;
+      font-size: 11px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.85);
+      text-align: right;
+    }
+
+    /* ── ITEM ROW ── */
+    .item-row {
+      display: flex;
+      padding: 15px 18px;
+      gap: 14px;
+      align-items: flex-start;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .item-row:last-child { border-bottom: none; }
+    .item-photo {
+      width: 106px;
+      height: 94px;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.08);
+      box-shadow: 0 4px 12px rgba(0,0,0,.4);
+      flex-shrink: 0;
+    }
+    .item-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .item-text { flex: 1; min-width: 0; }
+    .item-name-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+    .item-name {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 600;
+      font-size: 17.5px;
+      letter-spacing: .8px;
+      text-transform: uppercase;
+      color: #ff2e9a;
+      flex: 1;
+      min-width: 0;
+      line-height: 1.15;
+    }
+    .item-price {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 600;
+      font-size: 17px;
+      color: #f5c518;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .item-desc {
+      font-family: 'Manrope', sans-serif;
+      font-size: 13.5px;
+      line-height: 1.48;
+      color: #c5bedd;
+      margin-top: 3px;
+    }
+    .item-allergens {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 10px;
+    }
+
+    /* ── PERMANENT ALLERGEN KEY ── */
+    .allergen-permanent {
+      max-width: 480px;
+      margin: 28px auto 0;
+      padding: 0 16px;
+      border-top: 1px solid rgba(255,255,255,.06);
+      padding-top: 24px;
+    }
+    .allergen-permanent-title {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #a971ff;
+      margin-bottom: 14px;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      text-align: center;
+      padding: 32px 24px 52px;
+      margin-top: 24px;
+      border-top: 1px solid rgba(255,255,255,.05);
+    }
+    .footer-wordmark {
+      font-family: 'Oswald', sans-serif;
+      font-weight: 700;
+      font-size: 30px;
+      letter-spacing: 3px;
+      color: #fff;
+      text-shadow: 0 0 18px rgba(169,113,255,.4);
+      margin-bottom: 8px;
+    }
+    .footer-tagline {
+      font-family: 'Pacifico', cursive;
+      font-size: 18px;
+      color: #a971ff;
+      margin-bottom: 16px;
+    }
+    .footer-pill {
+      display: inline-block;
+      background: rgba(214,1,127,.15);
+      border: 1px solid rgba(214,1,127,.35);
+      border-radius: 999px;
+      padding: 7px 18px;
+      font-family: 'Manrope', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      color: #f3eef8;
+      margin-bottom: 14px;
+    }
+    .footer-location {
+      font-family: 'Manrope', sans-serif;
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #7c749a;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <div class="wrap">
+    <header class="hero">
+      <p class="hero-kicker">ROOFTOP · SUNSET ART HOTEL</p>
+      <h1 class="hero-title">SAYULITA</h1>
+      <p class="hero-location" id="js-location"></p>
+    </header>
+  </div>
+
+  <!-- STICKY NAV -->
+  <nav class="sticky-nav">
+    <div class="nav-top">
+      <span class="nav-brand">SAYULITA</span>
+      <div class="lang-toggle">
+        <button class="lang-btn" data-lang="bg" id="btn-bg">БГ</button>
+        <span class="lang-sep">/</span>
+        <button class="lang-btn" data-lang="en" id="btn-en">EN</button>
+      </div>
+    </div>
+    <div class="chips-wrap" id="js-chips"></div>
+  </nav>
+
+  <!-- COLLAPSIBLE ALLERGEN KEY -->
+  <div class="allergen-collapsible">
+    <button class="allergen-toggle-btn" id="js-allergen-toggle">
+      <span id="js-allergen-label"></span>
+      <span class="allergen-toggle-icon" id="js-toggle-icon">+</span>
+    </button>
+    <div class="allergen-key-inner" id="js-allergen-inner">
+      <div class="allergen-grid" id="js-allergen-top"></div>
+    </div>
+  </div>
+
+  <!-- MENU SECTIONS -->
+  <main class="menu-sections" id="js-sections"></main>
+
+  <!-- PERMANENT ALLERGEN KEY -->
+  <div class="allergen-permanent">
+    <p class="allergen-permanent-title" id="js-allergen-perm-title"></p>
+    <div class="allergen-grid" id="js-allergen-bottom"></div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-wordmark">SAYULITA</div>
+    <p class="footer-tagline">Mexico mi amor</p>
+    <div class="footer-pill" id="js-footer-pill"></div>
+    <p class="footer-location" id="js-footer-location"></p>
+  </footer>
+
+<script>
+// ── DATA ──────────────────────────────────────────────────────────────────────
+const MENU = {"restaurant":"SAYULITA","location":{"en":"Sunset Art Hotel · Chernomorets","bg":"Sunset Art Hotel · Черноморец"},"defaultLanguage":"bg","allergenKey":{"G":{"en":"Gluten","bg":"Глутен"},"D":{"en":"Dairy","bg":"Млечни"},"E":{"en":"Egg","bg":"Яйца"},"F":{"en":"Fish","bg":"Риба"},"C":{"en":"Shellfish","bg":"Ракообразни"},"P":{"en":"Peanut","bg":"Фъстъци"},"N":{"en":"Nuts","bg":"Ядки"},"Se":{"en":"Sesame","bg":"Сусам"},"So":{"en":"Soy","bg":"Соя"}},"sections":[{"id":"botana","name_es":"La Botana","subtitle":{"en":"Snacks to share","bg":"За споделяне"},"items":[{"id":"Las Bravas","name":"Las Bravas","name_i18n":null,"desc":{"en":"Crispy potato cubes with our smoky brava sauce and chipotle mayo.","bg":"Хрупкави картофени кубчета с пушена брава салса и чипотле майонеза."},"price":"8,50 €","photo":"menu-img/las-bravas.png","allergens":["E"]},{"id":"Hummus Trio","name":"Hummus Trio","name_i18n":null,"desc":{"en":"Tricolor hummus — red, white & green — with warm totopos.","bg":"Трицветен хумус — червен, бял и зелен — с топли тотопос."},"price":"8,50 €","photo":"menu-img/hummus-trio.png","allergens":[]},{"id":"Son Totopos","name":"Son Totopos","name_i18n":null,"desc":{"en":"Real nachos: totopos, mole beans, melted cheese, guacamole & sour cream.","bg":"Истински начос: тотопос, боб с моле, разтопено сирене, гуакамоле и заквасена сметана."},"price":"8,50 €","photo":"menu-img/son-totopos.png","allergens":["D"]},{"id":"Las Chalupitas","name":"Las Chalupitas","name_i18n":null,"desc":{"en":"Crispy little tortillas topped with chicken and tomatillo green salsa.","bg":"Хрупкави тортили с пиле и зелена салса от томатило."},"price":"8,50 €","photo":"menu-img/las-chalupitas.png","allergens":["D"]},{"id":"Quesadillas Fritas","name":"Quesadillas Fritas","name_i18n":null,"desc":{"en":"Golden fried masa quesadillas with melty cheese (or cheese & mushrooms), crema & green salsa.","bg":"Златисти пържени кесадиля от маса с разтопено сирене (или сирене и гъби), крема и зелена салса."},"price":"8,50 €","photo":"menu-img/quesadillas-fritas.png","allergens":["D"]},{"id":"Queso Fundido de Hongos","name":"Queso Fundido de Hongos","name_i18n":null,"desc":{"en":"Bubbling melted cheese with sautéed mushrooms & warm tortillas.","bg":"Бълбукащо разтопено сирене с гъби и топли тортили."},"price":"8,50 €","photo":"menu-img/quesos-fundidos.png","allergens":["D","G"]},{"id":"Queso Fundido de Chorizo","name":"Queso Fundido de Chorizo","name_i18n":null,"desc":{"en":"Bubbling melted cheese with chorizo & warm tortillas.","bg":"Бълбукащо разтопено сирене с чоризо и топли тортили."},"price":"8,50 €","photo":"menu-img/quesos-fundidos.png","allergens":["D","G"]}]},{"id":"tostaditas","name_es":"Las Tostaditas","subtitle":{"en":"Tostadas","bg":"Тостади"},"items":[{"id":"La de Atún","name":"La de Atún","name_i18n":null,"desc":{"en":"Tuna tataki tostada with guacamole, chipotle mayo & caramelised onion.","bg":"Тостада с риба тон татаки, гуакамоле, чипотле майонеза и карамелизиран лук."},"price":"9,90 €","photo":"menu-img/la-de-atun.png","allergens":["F","E","Se"]}]},{"id":"empezar","name_es":"Para Empezar","subtitle":{"en":"Starters","bg":"Предястия"},"items":[{"id":"Cevichazo","name":"Cevichazo","name_i18n":null,"desc":{"en":"Seafood mix in a zesty cucumber-lime aguachile. Fresh and made to share.","bg":"Микс от морски дарове в свежо агуачиле от краставица и лайм. Свежо, за споделяне."},"price":"10,50 €","photo":"menu-img/cevichazo.png","allergens":["F","C"]},{"id":"Bien Verde","name":"Bien Verde","name_i18n":null,"desc":{"en":"Spicy green salad with grilled chicken or tofu, avocado & a bright herb dressing.","bg":"Пикантна зелена салата с печено пиле или тофу, авокадо и свеж дресинг с подправки."},"price":"8,90 €","photo":"menu-img/bien-verde.png","allergens":["So"]}]},{"id":"tacos","name_es":"Tacos","subtitle":{"en":"Tacos","bg":"Такос"},"items":[{"id":"El Gobernador","name":"El Gobernador","name_i18n":null,"desc":{"en":"Griddled prawns in garlic-herb oil with beans, guacamole & caramelised pineapple in a flour tortilla.","bg":"Скариди на плоча с чесново-билково масло, боб, гуакамоле и карамелизиран ананас в пшенична тортила."},"price":"10,00 €","photo":"menu-img/el-gobernador.png","allergens":["C","G","E"]},{"id":"Baja California","name":"Baja California","name_i18n":null,"desc":{"en":"Crispy battered white fish with red cabbage, guacamole & wasabi mayo.","bg":"Хрупкава панирана бяла риба с червено зеле, гуакамоле и уасаби майонеза."},"price":"9,90 €","photo":"menu-img/baja-california.png","allergens":["F","G","E"]},{"id":"Mexican Ribs","name":"Mexican Ribs","name_i18n":null,"desc":{"en":"Slow-cooked pork ribs (8h+), served with three salsas: chimichurri, brava & chipotle mayo.","bg":"Бавно готвени свински ребра (8ч+), с три салси: чимичури, брава и чипотле майонеза."},"price":"12,50 €","photo":"menu-img/mexican-ribs.png","allergens":["E"]},{"id":"Cochinita Pibil","name":"Cochinita Pibil","name_i18n":null,"desc":{"en":"Yucatán slow-cooked pork in achiote with pickled red onion. A classic.","bg":"Бавно готвено свинско по юкатански с ачиоте и мариновани червени лучени кръгчета. Класика."},"price":"10,00 €","photo":"menu-img/cochinita-pibil.png","allergens":[]},{"id":"Alitas Mexicanitas","name":"Alitas Mexicanitas","name_i18n":null,"desc":{"en":"Slow-cooked chicken wings glazed in our house mole.","bg":"Бавно готвени пилешки крилца, глазирани с нашето моле."},"price":"10,00 €","photo":"menu-img/alitas-mexicanitas.png","allergens":["N","Se"]},{"id":"Quesabirria","name":"Quesabirria","name_i18n":null,"desc":{"en":"Crispy birria-and-cheese tacos griddled in their own consomé — dip and enjoy.","bg":"Хрупкави тако с бирия и сирене, запечени в собствено консоме — топвате и се наслаждавате."},"price":"10,00 €","photo":"menu-img/quesabirria.png","allergens":["D"]},{"id":"Tacos al Pastor","name":"Tacos al Pastor","name_i18n":null,"desc":{"en":"Thin-sliced al pastor pork (Roner) with onion, cilantro, peanut salsa, green salsa & grilled pineapple.","bg":"Тънко нарязано свинско ал пастор (Roner) с лук, кориандър, фъстъчена салса, зелена салса и ананас на плоча."},"price":"9,90 €","photo":"menu-img/tacos-al-pastor.png","allergens":["P"]}]},{"id":"costras","name_es":"Costras y Burritos","subtitle":{"en":"Crusts & burritos","bg":"Сирене и бурито"},"items":[{"id":"Costra Pastor y Piña","name":"Costra Pastor y Piña","name_i18n":null,"desc":{"en":"'Taco without tortilla' — crispy cheese crust with al pastor pork & pineapple.","bg":"'Тако без тортила' — хрупкава сиренена коричка с месо ал пастор и ананас."},"price":"10,50 €","photo":"menu-img/costra-pastor-pina.png","allergens":["D"]},{"id":"Costra Hongos","name":"Costra Hongos","name_i18n":null,"desc":{"en":"Crispy cheese crust filled with garlicky sautéed mushrooms. Veggie favourite.","bg":"Хрупкава сиренена коричка с гъби на тиган. Любимец на вегетарианците."},"price":"10,50 €","photo":"menu-img/costra-hongos.png","allergens":["D"]},{"id":"Burrito de Carnitas","name":"Burrito de Carnitas","name_i18n":null,"desc":{"en":"Slow-cooked carnitas, beans, rice, gouda & mole, rolled and griddled.","bg":"Бавно готвено карнитас, боб, ориз, гауда и моле, завити и запечени."},"price":"10,50 €","photo":"menu-img/burrito-carnitas.png","allergens":["D","G","N","Se"]}]},{"id":"dulce","name_es":"Algo Dulce","subtitle":{"en":"Desserts","bg":"Десерти"},"items":[{"id":"Las Tres Leches","name":"Las Tres Leches","name_i18n":null,"desc":{"en":"Floating-island three-milk cake with caramel. Light, creamy, irresistible.","bg":"Торта 'плаващ остров' с три вида мляко и карамел. Лека, кремообразна, неустоима."},"price":"6,50 €","photo":"menu-img/las-tres-leches.png","allergens":["D","E","G"]},{"id":"Crepas de Cajeta","name":"Crepas de Cajeta","name_i18n":null,"desc":{"en":"Warm crepes with cajeta, pecans & berries.","bg":"Топли палачинки с кахета, пекан и горски плодове."},"price":"7,50 €","photo":"menu-img/crepas-de-cajeta.png","allergens":["G","E","D","N"]},{"id":"Pastel Imposible","name":"Pastel Imposible","name_i18n":null,"desc":{"en":"Choco-chipotle cake, flan & whipped vanilla-cinnamon cream.","bg":"Торта от шоко-чипотле, флан и бита сметана с ванилия и канела."},"price":"6,50 €","photo":"menu-img/pastel-imposible.png","allergens":["D","E","G"]}]},{"id":"cocktails","name_es":"Cocktails","subtitle":{"en":"Cocktails","bg":"Коктейли"},"items":[{"id":"Doña Margara","name":"Doña Margara","name_i18n":null,"desc":{"en":"Mango-jalapeño margarita: sweet, a little spicy, cayenne rim. Our best-seller.","bg":"Манго-халапеньо маргарита: сладка, леко лютива, с кайенов ръб. Нашият хит."},"price":"9,90 €","photo":"menu-img/dona-margara.png","allergens":[]},{"id":"Sayulita Cocktail","name":"Sayulita","name_i18n":null,"desc":{"en":"Gin & mezcal with raspberry, finished with smoked rosemary.","bg":"Джин и мескал с малина, завършен с опушен розмарин."},"price":"10,50 €","photo":"menu-img/sayulita-cocktail.png","allergens":[]},{"id":"Mojito de la Pasión","name":"Mojito de la Pasión","name_i18n":null,"desc":{"en":"Passion-fruit mojito with mint, honey & rum.","bg":"Маракуя мохито с мента, мед и ром."},"price":"9,90 €","photo":"menu-img/mojito-pasion.png","allergens":[]},{"id":"Mayan Warrior Zombie","name":"Mayan Warrior Zombie","name_i18n":null,"desc":{"en":"Pineapple, vanilla, vodka & raspberry. Tropical and bold.","bg":"Ананас, ванилия, водка и малина. Тропически и силен."},"price":"9,90 €","photo":"menu-img/mayan-warrior-zombie.png","allergens":[]},{"id":"Aztec Piña Colada","name":"Aztec Piña Colada","name_i18n":null,"desc":{"en":"Pineapple, coconut & rum, blended. Holiday in a glass.","bg":"Ананас, кокос и ром, блендирани. Ваканция в чаша."},"price":"9,90 €","photo":"menu-img/aztec-pina-colada.png","allergens":["N"]},{"id":"Mexican Negroni","name":"Mexican Negroni","name_i18n":null,"desc":{"en":"A mezcal twist on the Negroni — mezcal, vermouth & Campari.","bg":"Мескал версия на Негрони — мескал, вермут и Кампари."},"price":"10,50 €","photo":"menu-img/mexican-negroni.png","allergens":[]},{"id":"La Prima Margarita","name":"La Prima Margarita","name_i18n":null,"desc":{"en":"Strawberry-chamoy margarita in a chamoy-drizzled glass. Sweet & tangy.","bg":"Маргарита с ягода и чамой в чаша с чамой. Сладко-кисела."},"price":"9,90 €","photo":"menu-img/la-prima-margarita.png","allergens":[]},{"id":"Chocomezcalero","name":"Chocomezcalero","name_i18n":null,"desc":{"en":"Chipotle chocolate, mezcal, tequila, vanilla cream & orange zest. Dessert in a glass.","bg":"Шоколад с чипотле, мескал, текила, ванилов крем и портокалова кора. Десерт в чаша."},"price":"10,50 €","photo":"menu-img/chocomezcalero.png","allergens":["D"]},{"id":"Mango Chamoyada","name":"Mango Chamoyada (no alcohol)","name_i18n":null,"desc":{"en":"Alcohol-free: blended mango, mango syrup & lime, chamoy + cayenne rim, mango on top.","bg":"Без алкохол: блендирано манго, сироп от манго и лайм, чамой + кайенов ръб, манго отгоре."},"price":"7,50 €","photo":"menu-img/mango-chamoyada.png","allergens":[]}]},{"id":"vino","name_es":"Vino","subtitle":{"en":"Wine","bg":"Вино"},"items":[{"id":"Los Pagos · Chile","name":"Los Pagos · Chile","name_i18n":null,"desc":{"en":"Cabernet Sauvignon · glass / bottle","bg":"Каберне Совиньон · чаша / бутилка"},"price":"4,90 / 19,90 €","photo":null,"allergens":[]},{"id":"Ribeaupierre Blanco","name":"Ribeaupierre Blanco","name_i18n":null,"desc":{"en":"Chardonnay · glass / bottle","bg":"Шардоне · чаша / бутилка"},"price":"3,90 / 16,50 €","photo":null,"allergens":[]},{"id":"Villa Yambol Rosé","name":"Villa Yambol Rosé","name_i18n":null,"desc":{"en":"Cabernet Sauvignon · glass / bottle","bg":"Каберне Совиньон · чаша / бутилка"},"price":"3,90 / 16,50 €","photo":null,"allergens":[]},{"id":"Fragolino","name":"Fragolino","name_i18n":null,"desc":{"en":"Sparkling wine · bottle","bg":"Пенливо вино · бутилка"},"price":"19,90 €","photo":null,"allergens":[]}]},{"id":"cerveza","name_es":"Cerveza","subtitle":{"en":"Beer","bg":"Бира"},"items":[{"id":"Stella","name":"Stella","name_i18n":null,"desc":{"en":"Draft · small / large","bg":"Наливна · малка / голяма"},"price":"3,50 / 4,50 €","photo":null,"allergens":["G"]},{"id":"Madri","name":"Madri","name_i18n":null,"desc":{"en":"Draft · small / large","bg":"Наливна · малка / голяма"},"price":"3,50 / 4,50 €","photo":null,"allergens":["G"]},{"id":"Corona","name":"Corona","name_i18n":null,"desc":{"en":"Bottle","bg":"Бутилка"},"price":"4,50 €","photo":null,"allergens":["G"]},{"id":"Burgasko","name":"Burgasko","name_i18n":null,"desc":{"en":"Bottle","bg":"Бутилка"},"price":"3,50 €","photo":null,"allergens":["G"]}]},{"id":"tequila","name_es":"Tequila & Mezcal","subtitle":{"en":"Tequila & Mezcal","bg":"Текила и Мескал"},"items":[{"id":"Tequila Olmeca","name":"Tequila Olmeca","name_i18n":null,"desc":{"en":null,"bg":null},"price":"5,50 €","photo":null,"allergens":[]},{"id":"Tequila Tradicional","name":"Tequila Tradicional","name_i18n":null,"desc":{"en":null,"bg":null},"price":"7,50 €","photo":null,"allergens":[]},{"id":"Herradura Reposado Premium","name":"Herradura Reposado Premium","name_i18n":null,"desc":{"en":null,"bg":null},"price":"12,00 €","photo":null,"allergens":[]},{"id":"Mezcal Bruxo","name":"Mezcal Bruxo","name_i18n":null,"desc":{"en":null,"bg":null},"price":"7,90 €","photo":null,"allergens":[]}]},{"id":"destilados","name_es":"Destilados","subtitle":{"en":"Spirits","bg":"Спиртни напитки"},"items":[{"id":"Absolut","name":"Absolut","name_i18n":null,"desc":{"en":"50 / 100 ml","bg":"50 / 100 мл"},"price":"5,90 / 9,90 €","photo":null,"allergens":[]},{"id":"Beefeater","name":"Beefeater","name_i18n":null,"desc":{"en":"50 / 100 ml","bg":"50 / 100 мл"},"price":"5,90 / 9,90 €","photo":null,"allergens":[]},{"id":"Jack Daniels","name":"Jack Daniels","name_i18n":null,"desc":{"en":"50 / 100 ml","bg":"50 / 100 мл"},"price":"7,50 / 10,50 €","photo":null,"allergens":[]},{"id":"Johnny Walker Red Label","name":"Johnny Walker Red Label","name_i18n":null,"desc":{"en":"50 / 100 ml","bg":"50 / 100 мл"},"price":"7,50 / 10,50 €","photo":null,"allergens":[]},{"id":"Rakia","name":"Rakia","name_i18n":null,"desc":{"en":"50 / 100 ml","bg":"50 / 100 мл"},"price":"5,90 / 9,90 €","photo":null,"allergens":[]},{"id":"Ouzo","name":"Ouzo","name_i18n":null,"desc":{"en":"50 / 100 ml","bg":"50 / 100 мл"},"price":"4,50 / 8,00 €","photo":null,"allergens":[]}]},{"id":"limonadas","name_es":"Limonadas","subtitle":{"en":"Lemonades","bg":"Лимонади"},"items":[{"id":"Limón","name":"Limón","name_i18n":null,"desc":{"en":"House lemonade","bg":"Домашна лимонада"},"price":"4,90 €","photo":null,"allergens":[]},{"id":"Mango","name":"Mango","name_i18n":null,"desc":{"en":"House lemonade","bg":"Домашна лимонада"},"price":"4,90 €","photo":null,"allergens":[]},{"id":"Frambuesa","name":"Frambuesa","name_i18n":null,"desc":{"en":"House lemonade","bg":"Домашна лимонада"},"price":"4,90 €","photo":null,"allergens":[]},{"id":"Maracuyá","name":"Maracuyá","name_i18n":null,"desc":{"en":"House lemonade","bg":"Домашна лимонада"},"price":"4,90 €","photo":null,"allergens":[]}]},{"id":"refrescos","name_es":"Refrescos","subtitle":{"en":"Soft drinks","bg":"Безалкохолни"},"items":[{"id":"water","name":null,"name_i18n":{"en":"Water","bg":"Вода"},"desc":{"en":null,"bg":null},"price":"1,90 €","photo":null,"allergens":[]},{"id":"water-big","name":null,"name_i18n":{"en":"Big Water","bg":"Голяма вода"},"desc":{"en":null,"bg":null},"price":"3,50 €","photo":null,"allergens":[]},{"id":"water-sparkling","name":null,"name_i18n":{"en":"Sparkling Water","bg":"Газирана вода"},"desc":{"en":null,"bg":null},"price":"1,90 €","photo":null,"allergens":[]},{"id":"cola-fanta","name":null,"name_i18n":{"en":"Cola / Fanta","bg":"Кола / Фанта"},"desc":{"en":null,"bg":null},"price":"2,50 €","photo":null,"allergens":[]},{"id":"cola-zero","name":null,"name_i18n":{"en":"Coke Zero","bg":"Кола Зеро"},"desc":{"en":null,"bg":null},"price":"2,50 €","photo":null,"allergens":[]},{"id":"tonic","name":null,"name_i18n":{"en":"Tonic","bg":"Тоник"},"desc":{"en":null,"bg":null},"price":"2,50 €","photo":null,"allergens":[]}]},{"id":"cafe","name_es":"Café","subtitle":{"en":"Coffee","bg":"Кафе"},"items":[{"id":"Espresso","name":"Espresso","name_i18n":null,"desc":{"en":null,"bg":null},"price":"2,50 €","photo":null,"allergens":[]},{"id":"Machiatto","name":"Machiatto","name_i18n":null,"desc":{"en":"With a little milk","bg":"С малко мляко"},"price":"2,70 €","photo":null,"allergens":["D"]},{"id":"Capuccino","name":"Capuccino","name_i18n":null,"desc":{"en":null,"bg":null},"price":"3,50 €","photo":null,"allergens":["D"]}]}]};
+
+// ── CONSTANTS ─────────────────────────────────────────────────────────────────
+const ALLERGEN_COLORS = {G:'#c8761e',D:'#2e78c7',E:'#d4a017',F:'#1fa3a8',C:'#c8326b',P:'#7a5230',N:'#6a9a2e',Se:'#9a8a2e',So:'#4e8c3a'};
+const STRINGS = {
+  bg: { allergens: 'Алергени', perm_title: 'АЛЕРГЕНИ', pill: '10% намаление за гости на хотела · Без код' },
+  en: { allergens: 'Allergens', perm_title: 'ALLERGENS', pill: '10% off for hotel guests · No code needed' }
+};
+
+// ── STATE ─────────────────────────────────────────────────────────────────────
+let lang = localStorage.getItem('sayulitaMenuLang') || 'bg';
+
+// ── HELPERS ───────────────────────────────────────────────────────────────────
+function itemName(item) {
+  return item.name || (item.name_i18n && item.name_i18n[lang]) || '';
+}
+
+function badge(code) {
+  return `<span class="a-badge" style="background:${ALLERGEN_COLORS[code]}">${code}</span>`;
+}
+
+function allergenEntry(code) {
+  return `<div class="allergen-entry">${badge(code)}<span>${MENU.allergenKey[code][lang]}</span></div>`;
+}
+
+// ── RENDER CHIPS ──────────────────────────────────────────────────────────────
+function renderChips() {
+  const wrap = document.getElementById('js-chips');
+  wrap.innerHTML = MENU.sections.map(s =>
+    `<button class="chip" data-section="${s.id}">${s.name_es}</button>`
+  ).join('');
+  wrap.querySelectorAll('.chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      const el = document.getElementById('sec-' + chip.dataset.section);
+      if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+}
+
+// ── RENDER SECTIONS ───────────────────────────────────────────────────────────
+function renderSections() {
+  const main = document.getElementById('js-sections');
+  main.innerHTML = MENU.sections.map(sec => {
+    const items = sec.items.map(item => {
+      const name = itemName(item);
+      const desc = item.desc && item.desc[lang];
+      const photo = item.photo
+        ? `<div class="item-photo"><img src="${item.photo}" alt="${name}" loading="lazy"></div>`
+        : '';
+      const allergens = item.allergens.length
+        ? `<div class="item-allergens">${item.allergens.map(badge).join('')}</div>`
+        : '';
+      const descHtml = desc ? `<p class="item-desc">${desc}</p>` : '';
+      const priceHtml = item.price ? `<span class="item-price">${item.price}</span>` : '';
+      return `
+        <div class="item-row">
+          ${photo}
+          <div class="item-text">
+            <div class="item-name-row">
+              <span class="item-name">${name}</span>
+              ${priceHtml}
+            </div>
+            ${descHtml}
+            ${allergens}
+          </div>
+        </div>`;
+    }).join('');
+
+    return `
+      <section class="menu-section" id="sec-${sec.id}">
+        <div class="section-header">
+          <span class="section-name">${sec.name_es}</span>
+          <span class="section-subtitle js-subtitle" data-id="${sec.id}">${sec.subtitle[lang]}</span>
+        </div>
+        ${items}
+      </section>`;
+  }).join('');
+}
+
+// ── RENDER ALLERGEN GRIDS ─────────────────────────────────────────────────────
+function renderAllergenGrids() {
+  const html = Object.keys(MENU.allergenKey).map(allergenEntry).join('');
+  document.getElementById('js-allergen-top').innerHTML = html;
+  document.getElementById('js-allergen-bottom').innerHTML = html;
+}
+
+// ── RENDER STATIC STRINGS ─────────────────────────────────────────────────────
+function renderStrings() {
+  const s = STRINGS[lang];
+  document.getElementById('js-location').textContent = MENU.location[lang];
+  document.getElementById('js-allergen-label').textContent = s.allergens;
+  document.getElementById('js-allergen-perm-title').textContent = s.perm_title;
+  document.getElementById('js-footer-pill').textContent = s.pill;
+  document.getElementById('js-footer-location').textContent = MENU.location[lang];
+  // subtitles (already in DOM after renderSections)
+  document.querySelectorAll('.js-subtitle').forEach(el => {
+    const sec = MENU.sections.find(s => s.id === el.dataset.id);
+    if (sec) el.textContent = sec.subtitle[lang];
+  });
+  // item names & descs that are i18n
+  document.getElementById('btn-bg').classList.toggle('active', lang === 'bg');
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  document.querySelector('html').lang = lang;
+}
+
+// ── SWITCH LANG ───────────────────────────────────────────────────────────────
+function setLang(l) {
+  lang = l;
+  localStorage.setItem('sayulitaMenuLang', lang);
+  // Re-render sections (names/descs change) and strings
+  renderSections();
+  renderAllergenGrids();
+  renderStrings();
+  initScrollSpy();
+}
+
+// ── COLLAPSIBLE ALLERGEN KEY ──────────────────────────────────────────────────
+function initCollapsible() {
+  const btn = document.getElementById('js-allergen-toggle');
+  const inner = document.getElementById('js-allergen-inner');
+  const icon = document.getElementById('js-toggle-icon');
+  btn.addEventListener('click', () => {
+    const open = inner.classList.toggle('open');
+    btn.classList.toggle('open', open);
+    icon.textContent = open ? '–' : '+';
+  });
+}
+
+// ── SCROLL SPY ────────────────────────────────────────────────────────────────
+let observer;
+function initScrollSpy() {
+  if (observer) observer.disconnect();
+  const chips = document.querySelectorAll('.chip');
+  const sections = document.querySelectorAll('.menu-section');
+
+  observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.id.replace('sec-', '');
+        chips.forEach(c => c.classList.toggle('active', c.dataset.section === id));
+        // scroll active chip into view in the chip bar
+        const activeChip = document.querySelector(`.chip[data-section="${id}"]`);
+        if (activeChip) activeChip.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      }
+    });
+  }, { rootMargin: '-98px 0px -55% 0px', threshold: 0 });
+
+  sections.forEach(s => observer.observe(s));
+}
+
+// ── LANG BUTTONS ──────────────────────────────────────────────────────────────
+function initLangButtons() {
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => setLang(btn.dataset.lang));
+  });
+}
+
+// ── INIT ──────────────────────────────────────────────────────────────────────
+renderChips();
+renderSections();
+renderAllergenGrids();
+renderStrings();
+initCollapsible();
+initLangButtons();
+initScrollSpy();
+</script>
+</body>
+</html>
