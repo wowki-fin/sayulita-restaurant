@@ -398,6 +398,7 @@
   </ul>
   <a class="nav-cta" href="#booking" data-i18n="reserve">Резервирай маса</a>
   <div id="lang-switcher"><span class="lang-btn active">BG</span><span class="lang-sep">|</span><a class="lang-btn" href="../en/">EN</a><span class="lang-sep">|</span><a class="lang-btn" href="../es/">ES</a></div>
+  <button class="nav-burger" id="nav-burger" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
 
 <section id="hero">
@@ -674,6 +675,10 @@
 <script>
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', window.scrollY > 60); });
+  const burger = document.getElementById('nav-burger');
+  const navLinks = document.querySelector('.nav-links');
+  burger.addEventListener('click', () => { navLinks.classList.toggle('open'); burger.classList.toggle('open'); });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { navLinks.classList.remove('open'); burger.classList.remove('open'); }));
   const t = {
     bg: { about:'За нас', hours:'Работно време', menu:'Меню', gallery:'The Place', contact:'Контакти', reserve:'Резервирай маса' },
     en: { about:'About', hours:'Hours', menu:'Menu', gallery:'The Place', contact:'Contact', reserve:'Reserve a table' },
