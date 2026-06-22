@@ -33,37 +33,6 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Restaurant","name":"Sayulita Restaurant","description":"Mexican restaurant on a rooftop terrace with Black Sea views. Chernomorets, Bulgaria.","url":"https://sayulita-restaurant.vercel.app","servesCuisine":"Mexican","priceRange":"$$","address":{"@type":"PostalAddress","streetAddress":"ul. Cherno More 1","addressLocality":"Chernomorets","postalCode":"8142","addressCountry":"BG"},"openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"08:30","closes":"10:30"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"13:30","closes":"16:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],"opens":"18:00","closes":"23:00"}],"sameAs":["https://www.instagram.com/sayulitamiamor","https://www.facebook.com/sayulitamiamor"]}
 </script>
-<script>
-
-
-      if (overlay) overlay.classList.remove('active');
-    }
-    document.querySelectorAll('.loteria-card-item').forEach(function(card) {
-      card.addEventListener('click', function(e) {
-        e.stopPropagation();
-        var enlarged = card.classList.contains('enlarged');
-        var flipped  = card.classList.contains('flipped');
-        if (!enlarged) {
-          // State 0 → 1: enlarge
-          resetAll();
-          card.classList.add('enlarged');
-          if (overlay) overlay.classList.add('active');
-        } else if (!flipped) {
-          // State 1 → 2: flip
-          card.classList.add('flipped');
-        } else {
-          // State 2 → 0: reset
-          resetAll();
-        }
-      });
-    });
-    if (overlay) overlay.addEventListener('click', resetAll);
-    document.addEventListener('keydown', function(e) { if (e.key === 'Escape') resetAll(); });
-  });    card.addEventListener('click', function() {
-      card.classList.toggle('flipped');
-    });
-  });
-</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
