@@ -2,6 +2,14 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18255980012"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'AW-18255980012');
+</script>
 <link rel="icon" type="image/png" href="../favicon.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SAYULITA — Restaurante Mexicano · Chernomorets</title>
@@ -653,6 +661,14 @@
     en: { about:'About', hours:'Hours', menu:'Menu', gallery:'The Place', contact:'Contact', reserve:'Reserve a table' },
     es: { about:'Sobre nosotros', hours:'Horarios', menu:'Menú', gallery:'The Place', contact:'Contacto', reserve:'Reservar mesa' }
   };
+  // Google Ads conversion tracking
+  function fireConversion() {
+    if (typeof window.gtag === 'function') {
+      window.gtag('event', 'conversion', { 'send_to': 'AW-18255980012/3sxWCLrt5MMcEOzLkIFE' });
+    }
+  }
+  document.querySelector('.nav-cta').addEventListener('click', fireConversion);
+  document.querySelectorAll('.btn-lila, .btn-gold').forEach(function(b) { b.addEventListener('click', fireConversion); });
 </script>
 
 <!-- Enlarged card modal -->
